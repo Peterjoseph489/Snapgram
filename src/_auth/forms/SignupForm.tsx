@@ -2,7 +2,10 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Link } from 'react-router-dom'
 
-import {Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage,
+import { useToast } from "@/components/ui/use-toast"
+
+
+import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 
@@ -15,6 +18,7 @@ import { createUserAccount } from "@/lib/appwrite/api"
 
 
 const SignupForm = () => {
+  const { toast } = useToast();
   const isLoading = false;
 
 
@@ -34,7 +38,13 @@ const SignupForm = () => {
     // create the user
     const newUser = await createUserAccount(values);
 
-    console.log(newUser)
+    if(!newUser) {
+      return toast({
+        title: "Sign up failed. Please try again"
+      })
+    }
+
+    // const session  = await signInAccount()
   }
 
   return (
