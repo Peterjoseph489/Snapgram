@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { Button } from '../ui/button';
 
 const Topbar = () => {
   return (
@@ -9,9 +10,15 @@ const Topbar = () => {
                     src="/assets/images/logo.svg"
                     alt='logo'
                     width={130}
-                    
+                    height={325}
                 />
             </Link>
+
+            <div className='flex gap-4'>
+                <Button variant="ghost">
+                    <img src='/assets/icons/logout.svg' alt='logout'/>
+                </Button>
+            </div>
         </div>
     </section>
   )
