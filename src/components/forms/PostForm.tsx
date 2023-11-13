@@ -11,9 +11,10 @@ import { Textarea } from "../ui/textarea"
 import FileUploader from "../shared/FileUploader"
 import { PostValidation } from "@/lib/validation"
 import { Models } from "appwrite"
-import { useCreatePost, useUpdatePost } from "@/lib/react-query/queries";
+// import { useCreatePost, useUpdatePost } from "@/lib/react-query/queries";
 import { useUserContext } from "@/context/AuthContext"
 import { useToast } from "@/components/ui/use-toast";
+import { useCreatePost } from "@/lib/react-query/queriesAndMutations";
 
 
 
@@ -22,7 +23,7 @@ type PostFormProps = {
 }
 
 const PostForm = ({ post }: PostFormProps) => {
-    const { mutateAsync: createPost, isLoading: isLoadingCreate } =
+    const { mutateAsync: createPost, isPending: isLoadingCreate } =
     useCreatePost();
     const { user } = useUserContext();
     const { toast } = useToast();
@@ -49,7 +50,7 @@ const PostForm = ({ post }: PostFormProps) => {
 
     if(!newPost) {
         toast({
-            title: 'Please try again';
+            title: 'Please try again'
         })
     }
 
