@@ -20,9 +20,10 @@ import { useCreatePost } from "@/lib/react-query/queriesAndMutations";
 
 type PostFormProps = {
     post?: Models.Document;
+    action: 'Create' | 'Update';
 }
 
-const PostForm = ({ post }: PostFormProps) => {
+const PostForm = ({ post, action }: PostFormProps) => {
     const { mutateAsync: createPost, isPending: isLoadingCreate } =
     useCreatePost();
     const { user } = useUserContext();
@@ -83,7 +84,7 @@ const PostForm = ({ post }: PostFormProps) => {
               <FormControl>
                 <FileUploader 
                     fieldChange={field.onChange}
-                    mediaUrl={post?.mediaUrl}
+                    mediaUrl={post?.imageUrl}
                 />
               </FormControl>
               <FormMessage className="shad-form_message"/>
